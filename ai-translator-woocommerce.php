@@ -81,6 +81,30 @@ final class AI_Translator_WooCommerce {
 
         add_action('init', array($this, 'init'));
         add_action('plugins_loaded', array($this, 'on_plugins_loaded'));
+
+        // Declare WooCommerce feature compatibility
+        add_action('before_woocommerce_init', array($this, 'declare_wc_compatibility'));
+    }
+
+    /**
+     * Declare compatibility with WooCommerce features (HPOS, Blocks, etc.)
+     */
+    public function declare_wc_compatibility() {
+        if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+            // Declare HPOS (High-Performance Order Storage) compatibility
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+                'custom_order_tables',
+                __FILE__,
+                true
+            );
+
+            // Declare Cart & Checkout Blocks compatibility
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+                'cart_checkout_blocks',
+                __FILE__,
+                true
+            );
+        }
     }
 
     /**
