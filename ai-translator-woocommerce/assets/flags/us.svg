@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+  <path fill="#bd3d44" d="M0 0h640v37h-640zm0 74h640v37h-640zm0 148h640v37h-640zm0 74h640v37h-640zm0-296h640v37h-640zm0 148h640v37h-640zm0 148h640v37h-640z"/>
+  <path fill="#fff" d="M0 37h640v37h-640zm0 74h640v37h-640zm0 74h640v37h-640zm0 74h640v37h-640zm0 74h640v37h-640zm0 74h640v37h-640z"/>
+  <path fill="#192f5d" d="M0 0h260v259h-260z"/>
+  <g fill="#fff">
+    <circle cx="25" cy="18" r="8"/><circle cx="65" cy="18" r="8"/><circle cx="105" cy="18" r="8"/><circle cx="145" cy="18" r="8"/><circle cx="185" cy="18" r="8"/><circle cx="225" cy="18" r="8"/>
+    <circle cx="45" cy="40" r="8"/><circle cx="85" cy="40" r="8"/><circle cx="125" cy="40" r="8"/><circle cx="165" cy="40" r="8"/><circle cx="205" cy="40" r="8"/>
+    <circle cx="25" cy="62" r="8"/><circle cx="65" cy="62" r="8"/><circle cx="105" cy="62" r="8"/><circle cx="145" cy="62" r="8"/><circle cx="185" cy="62" r="8"/><circle cx="225" cy="62" r="8"/>
+    <circle cx="45" cy="84" r="8"/><circle cx="85" cy="84" r="8"/><circle cx="125" cy="84" r="8"/><circle cx="165" cy="84" r="8"/><circle cx="205" cy="84" r="8"/>
+    <circle cx="25" cy="106" r="8"/><circle cx="65" cy="106" r="8"/><circle cx="105" cy="106" r="8"/><circle cx="145" cy="106" r="8"/><circle cx="185" cy="106" r="8"/><circle cx="225" cy="106" r="8"/>
+    <circle cx="45" cy="128" r="8"/><circle cx="85" cy="128" r="8"/><circle cx="125" cy="128" r="8"/><circle cx="165" cy="128" r="8"/><circle cx="205" cy="128" r="8"/>
+    <circle cx="25" cy="150" r="8"/><circle cx="65" cy="150" r="8"/><circle cx="105" cy="150" r="8"/><circle cx="145" cy="150" r="8"/><circle cx="185" cy="150" r="8"/><circle cx="225" cy="150" r="8"/>
+    <circle cx="45" cy="172" r="8"/><circle cx="85" cy="172" r="8"/><circle cx="125" cy="172" r="8"/><circle cx="165" cy="172" r="8"/><circle cx="205" cy="172" r="8"/>
+    <circle cx="25" cy="194" r="8"/><circle cx="65" cy="194" r="8"/><circle cx="105" cy="194" r="8"/><circle cx="145" cy="194" r="8"/><circle cx="185" cy="194" r="8"/><circle cx="225" cy="194" r="8"/>
+  </g>
+</svg>

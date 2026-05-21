@@ -1,0 +1,114 @@
+/**
+ * AI Translator - Admin Settings Styles
+ */
+
+.aitwc-settings-wrap {
+    max-width: 900px;
+}
+
+.aitwc-settings-section {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.aitwc-settings-section h2 {
+    margin-top: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+/* Provider settings toggle */
+.aitwc-provider-settings {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.aitwc-provider-settings.active {
+    display: block;
+}
+
+.aitwc-provider-settings h3 {
+    margin-top: 0;
+}
+
+/* Test connection button */
+.aitwc-test-api {
+    margin-left: 10px !important;
+}
+
+.aitwc-test-result {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.aitwc-test-result.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.aitwc-test-result.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Batch translate */
+.aitwc-batch-controls {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px 24px;
+}
+
+.aitwc-progress-bar {
+    width: 100%;
+    height: 24px;
+    background: #f0f0f1;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.aitwc-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2271b1, #135e96);
+    border-radius: 12px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+/* Statistics */
+.aitwc-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.aitwc-stat-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+}
+
+.aitwc-stat-card h3 {
+    font-size: 36px;
+    margin: 0 0 8px;
+    color: #2271b1;
+}
+
+.aitwc-stat-card p {
+    margin: 0;
+    color: #646970;
+}

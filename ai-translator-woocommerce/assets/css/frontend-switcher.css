@@ -1,0 +1,182 @@
+/**
+ * AI Translator - Frontend Language Switcher Styles
+ * Embedded in navigation bar with flag icons
+ */
+
+/* Menu item container */
+.aitwc-menu-item {
+    position: relative;
+    list-style: none;
+}
+
+/* Switcher wrapper */
+.aitwc-switcher {
+    position: relative;
+    display: inline-block;
+}
+
+/* Main button */
+.aitwc-switcher-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: inherit;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.aitwc-switcher-btn:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.aitwc-switcher-btn:focus {
+    outline: 2px solid #2271b1;
+    outline-offset: 2px;
+}
+
+/* Flag icon */
+.aitwc-flag-icon {
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+    object-fit: cover;
+    box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+
+/* Language name */
+.aitwc-lang-name {
+    font-size: 13px;
+}
+
+/* Arrow icon */
+.aitwc-arrow {
+    transition: transform 0.2s ease;
+    margin-left: 2px;
+}
+
+.aitwc-switcher.open .aitwc-arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu */
+.aitwc-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 180px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    padding: 6px 0;
+    margin: 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+    z-index: 99999;
+}
+
+.aitwc-switcher.open .aitwc-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown items */
+.aitwc-dropdown-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.aitwc-dropdown-item a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #1d2327;
+    font-size: 14px;
+    transition: background 0.15s ease;
+}
+
+.aitwc-dropdown-item a:hover {
+    background: #f0f6fc;
+}
+
+.aitwc-dropdown-item.aitwc-active a {
+    background: #f0f6fc;
+    font-weight: 600;
+}
+
+.aitwc-dropdown-item.aitwc-active a::after {
+    content: "\2713";
+    margin-left: auto;
+    color: #2271b1;
+    font-weight: bold;
+}
+
+/* RTL Support */
+[dir="rtl"] .aitwc-dropdown {
+    right: auto;
+    left: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .aitwc-switcher-btn {
+        padding: 6px 10px;
+    }
+
+    .aitwc-lang-name {
+        display: none;
+    }
+
+    .aitwc-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 16px 16px 0 0;
+        min-width: 100%;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    .aitwc-dropdown-item a {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Loading state */
+.aitwc-loading .aitwc-switcher-btn {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.aitwc-loading .aitwc-switcher-btn::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-top-color: #2271b1;
+    border-radius: 50%;
+    animation: aitwc-spin 0.6s linear infinite;
+    margin-left: 6px;
+}
+
+@keyframes aitwc-spin {
+    to { transform: rotate(360deg); }
+}
