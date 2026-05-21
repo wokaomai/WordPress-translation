@@ -21,7 +21,7 @@
 ## 📦 插件结构
 
 ```
-ai-translator-woocommerce/
+WordPress-translation/                  # 仓库根目录 = 插件文件夹
 ├── ai-translator-woocommerce.php       # 插件主文件（入口）
 ├── includes/
 │   ├── class-gemini-api.php            # Google Gemini API 接口
@@ -53,19 +53,25 @@ ai-translator-woocommerce/
 
 ## 🚀 安装步骤
 
-### 方法一：手动安装
+### 方法一：从 GitHub 下载 ZIP 安装（推荐）
 
-1. 下载本仓库或 clone：
+1. 进入仓库 Releases 页面或直接下载 ZIP：
+   - [下载 ZIP](https://github.com/wokaomai/WordPress-translation/archive/refs/heads/main.zip)
+2. 进入 WordPress 后台 → 插件 → 安装插件 → **上传插件**
+3. 选择下载的 ZIP 文件 → 点击 **现在安装**
+4. 安装完成后点击 **启用插件**
+
+> ⚠️ **注意**：直接从 GitHub 下载的 ZIP 解压后文件夹名可能是 `WordPress-translation-main`，WordPress 会自动将其识别为插件文件夹名。插件可以正常工作。
+
+### 方法二：手动安装
+
+1. Clone 仓库：
    ```bash
    git clone https://github.com/wokaomai/WordPress-translation.git
    ```
-2. 将 `ai-translator-woocommerce` 文件夹复制到 WordPress 的 `/wp-content/plugins/` 目录
-3. 在 WordPress 后台 → 插件 → 找到 "AI Translator for WooCommerce" → 点击 **启用**
-
-### 方法二：ZIP 上传
-
-1. 将 `ai-translator-woocommerce` 文件夹打包为 ZIP
-2. WordPress 后台 → 插件 → 安装插件 → 上传插件 → 选择 ZIP 文件
+2. 将整个仓库文件夹重命名为 `ai-translator-woocommerce`（可选，美观）
+3. 将该文件夹复制到 WordPress 的 `/wp-content/plugins/` 目录
+4. 在 WordPress 后台 → 插件 → 找到 "AI Translator for WooCommerce" → 点击 **启用**
 
 ---
 
