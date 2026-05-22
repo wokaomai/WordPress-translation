@@ -81,6 +81,7 @@ class AITWC_Admin_Settings {
         register_setting('aitwc_settings', 'aitwc_source_language');
         register_setting('aitwc_settings', 'aitwc_target_languages');
         register_setting('aitwc_settings', 'aitwc_switcher_position');
+        register_setting('aitwc_settings', 'aitwc_menu_integration');
         register_setting('aitwc_settings', 'aitwc_translate_products');
         register_setting('aitwc_settings', 'aitwc_translate_pages');
         register_setting('aitwc_settings', 'aitwc_translate_posts');
@@ -285,19 +286,41 @@ class AITWC_Admin_Settings {
                     <h2><?php _e('Display & SEO Settings', 'ai-translator-wc'); ?></h2>
                     <table class="form-table">
                         <tr>
-                            <th><?php _e('Language Switcher Position', 'ai-translator-wc'); ?></th>
+                            <th><?php _e('Switcher Integration Mode', 'ai-translator-wc'); ?></th>
                             <td>
-                                <select name="aitwc_switcher_position">
-                                    <option value="nav-menu" <?php selected(get_option('aitwc_switcher_position', 'nav-menu'), 'nav-menu'); ?>>
-                                        <?php _e('Navigation Menu', 'ai-translator-wc'); ?>
+                                <?php
+                                // Read mode with legacy fallback
+                                $integration = get_option('aitwc_menu_integration', '');
+                                if (empty($integration)) {
+                                    $legacy = get_option('aitwc_switcher_position', 'nav-menu');
+                                    $integration = ($legacy === 'top-bar') ? 'top-bar'
+                                        : (($legacy === 'float-right') ? 'float-right' : 'auto');
+                                }
+                                ?>
+                                <select name="aitwc_menu_integration" id="aitwc_menu_integration">
+                                    <option value="menu_item" <?php selected($integration, 'menu_item'); ?>>
+                                        <?php _e('Menu Item (recommended) — add via Appearance → Menus', 'ai-translator-wc'); ?>
                                     </option>
-                                    <option value="top-bar" <?php selected(get_option('aitwc_switcher_position', ''), 'top-bar'); ?>>
-                                        <?php _e('Top Bar', 'ai-translator-wc'); ?>
+                                    <option value="auto" <?php selected($integration, 'auto'); ?>>
+                                        <?php _e('Auto-inject into primary navigation', 'ai-translator-wc'); ?>
                                     </option>
-                                    <option value="float-right" <?php selected(get_option('aitwc_switcher_position', ''), 'float-right'); ?>>
-                                        <?php _e('Float Right', 'ai-translator-wc'); ?>
+                                    <option value="top-bar" <?php selected($integration, 'top-bar'); ?>>
+                                        <?php _e('Top Bar (above page)', 'ai-translator-wc'); ?>
+                                    </option>
+                                    <option value="float-right" <?php selected($integration, 'float-right'); ?>>
+                                        <?php _e('Floating (fixed right)', 'ai-translator-wc'); ?>
+                                    </option>
+                                    <option value="shortcode" <?php selected($integration, 'shortcode'); ?>>
+                                        <?php _e('Shortcode / PHP only', 'ai-translator-wc'); ?>
+                                    </option>
+                                    <option value="none" <?php selected($integration, 'none'); ?>>
+                                        <?php _e('Disabled', 'ai-translator-wc'); ?>
                                     </option>
                                 </select>
+                                <p class="description">
+                                    <?php _e('Recommended: choose <strong>Menu Item</strong>, then go to <em>Appearance → Menus</em> and drag the "Language Switcher" item into your menu where you want it.', 'ai-translator-wc'); ?><br>
+                                    <?php _e('Or use the shortcode <code>[aitwc_language_switcher]</code> anywhere in your content / page-builder.', 'ai-translator-wc'); ?>
+                                </p>
                             </td>
                         </tr>
                         <tr>

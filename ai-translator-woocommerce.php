@@ -100,6 +100,7 @@ final class AI_Translator_WooCommerce {
             'source_language'  => 'en',
             'target_languages' => array('zh-CN', 'fr', 'es', 'ko'),
             'switcher_position' => 'nav-menu',
+            'menu_integration' => 'menu_item',
             'switcher_style'   => 'dropdown',
             'seo_urls'         => 'yes',
             'auto_translate'   => 'no',
