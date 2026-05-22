@@ -180,3 +180,46 @@
 @keyframes aitwc-spin {
     to { transform: rotate(360deg); }
 }
+
+
+
+/* -----------------------------------------------------------------
+ * Floating positions (top-bar / float-right)
+ * ----------------------------------------------------------------- */
+
+.aitwc-top-bar {
+    width: 100%;
+    background: #f6f7f9;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    justify-content: flex-end;
+    padding: 6px 16px;
+    box-sizing: border-box;
+}
+
+.aitwc-float-right {
+    position: fixed;
+    top: 80px;
+    right: 16px;
+    z-index: 99998;
+}
+
+.aitwc-float-right .aitwc-switcher-btn {
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* When switcher lives inside a nav <li>, drop the box look so it blends in */
+.aitwc-menu-item .aitwc-switcher-btn,
+li.menu-item .aitwc-switcher-btn {
+    border-color: transparent;
+    background: transparent;
+    padding: 6px 10px;
+}
+
+/* When the switcher REPLACES a custom menu item, walker already wrapped it
+ * inside the theme's <li>; align the dropdown to the menu item. */
+li.menu-item-aitwc-language-switcher-menu-item > .aitwc-switcher,
+li.menu-item.aitwc-language-switcher-menu-item > .aitwc-switcher {
+    display: inline-block;
+}
