@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!class_exists('AITWC_Frontend_Switcher', false)) :
+
 class AITWC_Frontend_Switcher {
 
     private static $instance = null;
@@ -37,8 +39,9 @@ class AITWC_Frontend_Switcher {
         add_filter('wp_nav_menu_items', array($this, 'auto_inject_into_menu'), 10, 2);
         add_filter('walker_nav_menu_start_el', array($this, 'render_menu_item'), 10, 4);
 
-        // Admin: add "Language Switcher" meta box on Appearance → Menus screen
-        add_action('admin_init', array($this, 'register_nav_menu_meta_box'));
+        // Admin: add "Language Switcher" meta box on Appearance → Menus screen.
+        // Use the screen-specific hook so add_meta_box() is guaranteed loaded.
+        add_action('admin_head-nav-menus.php', array($this, 'register_nav_menu_meta_box'));
 
         // Shortcode: [aitwc_language_switcher]
         add_shortcode('aitwc_language_switcher', array($this, 'shortcode_render'));
@@ -196,6 +199,9 @@ class AITWC_Frontend_Switcher {
      * letting site admins drag a "Language Switcher" item into any menu.
      */
     public function register_nav_menu_meta_box() {
+        if (!function_exists('add_meta_box')) {
+            return;
+        }
         add_meta_box(
             'aitwc-nav-menu-meta-box',
             __('Language Switcher', 'ai-translator-wc'),
@@ -499,3 +505,5 @@ class AITWC_Frontend_Switcher {
         return isset($map[$lower]) ? $map[$lower] : $lower;
     }
 }
+
+endif; // class_exists

@@ -20,11 +20,19 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Prevent double-load (e.g. when WP scrapes the plugin file during activation
+// validation in addition to its normal include).
+if (defined('AITWC_VERSION')) {
+    return;
+}
+
 // Plugin constants
 define('AITWC_VERSION', '1.0.0');
 define('AITWC_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AITWC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('AITWC_PLUGIN_BASENAME', plugin_basename(__FILE__));
+
+if (!class_exists('AI_Translator_WooCommerce', false)) :
 
 /**
  * Main plugin class
@@ -178,3 +186,5 @@ final class AI_Translator_WooCommerce {
 
 // Initialize plugin
 AI_Translator_WooCommerce::get_instance();
+
+endif; // class_exists

@@ -7,6 +7,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!class_exists('AITWC_Admin_Settings', false)) :
+
 class AITWC_Admin_Settings {
 
     private static $instance = null;
@@ -530,3 +532,5 @@ class AITWC_Admin_Settings {
         ));
     }
 }
+
+endif; // class_exists
