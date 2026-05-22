@@ -8,8 +8,53 @@
     var AITWC_Switcher = {
 
         init: function() {
+            this.replaceMenuItemPlaceholders();
             this.bindEvents();
             this.setInitialState();
+        },
+
+        /**
+         * Find any menu items that look like our switcher placeholder and
+         * replace them with the real switcher HTML.
+         *
+         * Why JS: many themes use a custom Walker_Nav_Menu and skip the
+         *   walker_nav_menu_start_el filter, so PHP-side replacement is not
+         *   reliable across themes. This DOM-level replacement is theme
+         *   agnostic and works even with Elementor/Bricks/etc. headers.
+         */
+        replaceMenuItemPlaceholders: function() {
+            var url = aitwc_front.menu_item_url || '#aitwc-language-switcher';
+            var cls = aitwc_front.menu_item_class || 'aitwc-language-switcher-menu-item';
+
+            // Build candidate selectors:
+            //   - <a href="#aitwc-language-switcher">
+            //   - <li class="...aitwc-language-switcher-menu-item...">
+            //   - <li class="...menu-item-aitwc-language-switcher-menu-item...">
+            //     (WP often prefixes user CSS class with 'menu-item-')
+            var $candidates = $('a[href="' + url + '"]').closest('li');
+            $candidates = $candidates.add('li.' + cls);
+            $candidates = $candidates.add('li.menu-item-' + cls);
+
+            if (!$candidates.length) {
+                return;
+            }
+
+            // Replace the inner content of each candidate <li> with the
+            // pre-rendered switcher HTML. Keep the <li> wrapper so the
+            // theme's nav layout (flex/grid) keeps working.
+            var html = aitwc_front.switcher_html || '';
+            if (!html) {
+                return;
+            }
+
+            $candidates.each(function () {
+                var $li = $(this);
+                // Avoid double-replacement
+                if ($li.find('.aitwc-switcher').length) {
+                    return;
+                }
+                $li.html(html).addClass('aitwc-menu-item');
+            });
         },
 
         bindEvents: function() {

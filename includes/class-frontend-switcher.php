@@ -93,14 +93,20 @@ class AITWC_Frontend_Switcher {
         }
 
         wp_localize_script('aitwc-frontend', 'aitwc_front', array(
-            'ajax_url'     => admin_url('admin-ajax.php'),
-            'nonce'        => wp_create_nonce('aitwc_frontend_nonce'),
-            'current_lang' => $this->get_current_language(),
-            'source_lang'  => $source_language,
-            'languages'    => $active_langs,
-            'flags_url'    => AITWC_PLUGIN_URL . 'assets/flags/',
-            'seo_urls'     => get_option('aitwc_seo_urls', 'yes'),
-            'current_url'  => $this->get_clean_url(),
+            'ajax_url'         => admin_url('admin-ajax.php'),
+            'nonce'            => wp_create_nonce('aitwc_frontend_nonce'),
+            'current_lang'     => $this->get_current_language(),
+            'source_lang'      => $source_language,
+            'languages'        => $active_langs,
+            'flags_url'        => AITWC_PLUGIN_URL . 'assets/flags/',
+            'seo_urls'         => get_option('aitwc_seo_urls', 'yes'),
+            'current_url'      => $this->get_clean_url(),
+            // For JS-based menu-item replacement (works with themes that use
+            // a custom Walker and don't fire walker_nav_menu_start_el).
+            'integration_mode' => $this->get_integration_mode(),
+            'menu_item_class'  => self::MENU_ITEM_CLASS,
+            'menu_item_url'    => '#aitwc-language-switcher',
+            'switcher_html'    => $this->get_switcher_html(),
         ));
     }
 
@@ -160,16 +166,17 @@ class AITWC_Frontend_Switcher {
 
         $location = isset($args->theme_location) ? $args->theme_location : '';
 
-        // Preferred locations across common themes
+        // Preferred locations across common themes — STRICTLY primary nav only.
+        // Locations like 'top' / 'header' / 'header-menu' are often used for
+        // secondary utility bars (where the original screenshot bug occurred),
+        // so they're intentionally NOT included here.
         $preferred = array(
             'primary',
             'main-menu',
             'main_menu',
             'main',
-            'header',
-            'header-menu',
-            'top',
             'menu-1',
+            'primary-menu',
         );
 
         /**

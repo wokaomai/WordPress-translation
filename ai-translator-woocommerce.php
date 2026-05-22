@@ -89,6 +89,32 @@ final class AI_Translator_WooCommerce {
 
         add_action('init', array($this, 'init'));
         add_action('plugins_loaded', array($this, 'on_plugins_loaded'));
+
+        // Declare compatibility with WooCommerce features (HPOS, Cart/Checkout Blocks)
+        // so WooCommerce does not flag this plugin as incompatible.
+        add_action('before_woocommerce_init', array($this, 'declare_woocommerce_compat'));
+    }
+
+    /**
+     * Declare compatibility with WooCommerce HPOS (Custom Order Tables)
+     * and Cart/Checkout Blocks. This plugin does not touch order tables
+     * directly so it is fully compatible.
+     *
+     * @see https://developer.woocommerce.com/docs/hpos-extension-recipe-book/
+     */
+    public function declare_woocommerce_compat() {
+        if (class_exists('\\Automattic\\WooCommerce\\Utilities\\FeaturesUtil')) {
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+                'custom_order_tables',
+                __FILE__,
+                true
+            );
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+                'cart_checkout_blocks',
+                __FILE__,
+                true
+            );
+        }
     }
 
     /**

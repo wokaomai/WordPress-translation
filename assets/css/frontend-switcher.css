@@ -223,3 +223,18 @@ li.menu-item-aitwc-language-switcher-menu-item > .aitwc-switcher,
 li.menu-item.aitwc-language-switcher-menu-item > .aitwc-switcher {
     display: inline-block;
 }
+
+/* Hide the placeholder anchor while JS hasn't finished replacing it.
+ * Prevents the literal "Language Switcher" text from flashing in the menu
+ * for a frame on slow connections / before JS executes. */
+a[href="#aitwc-language-switcher"] {
+    visibility: hidden;
+}
+.aitwc-menu-item a[href="#aitwc-language-switcher"],
+li.aitwc-language-switcher-menu-item a[href="#aitwc-language-switcher"],
+li.menu-item-aitwc-language-switcher-menu-item a[href="#aitwc-language-switcher"] {
+    visibility: hidden;
+}
+/* Once JS has replaced the item, the .aitwc-switcher container is visible
+ * (the placeholder anchor is no longer in the DOM, so the rule above is
+ * effectively a one-shot anti-flash guard). */
